@@ -22,7 +22,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: bjornadalno/${CICD_GIT_REPO_NAME}:${CICD_EXECUTION_SEQUENCE}
+      tag: bjornadalno/${CICD_GIT_REPO_NAME}:1.${CICD_EXECUTION_SEQUENCE}
       registry: index.docker.io
 timeout: 60
 notification: {}
