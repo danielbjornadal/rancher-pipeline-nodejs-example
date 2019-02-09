@@ -12,16 +12,22 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: ${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
-      registry: 127.0.0.1:34725
-- name: Push
-  steps:
-  - runScriptConfig:
-      image: docker:dind
-      shellScript: |-
-        echo ${CICD_GIT_TAG}
-        echo ${CICD_EVENT}
-        dockerd-entrypoint.sh &
-        docker image ls
+      tag: bjornadalno/${CICD_GIT_REPO_NAME}:latest,stable,${CICD_GIT_BRANCH}},${CICD_GIT_TAG}
+      pushRemote: true
+      registry: index.docker.io
+    when:
+      branch:
+        include:
+        - master
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: bjornadalno/${CICD_GIT_REPO_NAME}:latest,dev,${CICD_GIT_BRANCH}},${CICD_GIT_BRANCH}}-${CICD_GIT_TAG},${CICD_GIT_BRANCH}}-${CICD_GIT_COMMIT},${CICD_GIT_BRANCH}}-${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: index.docker.io
+    when:
+      branch:
+        include:
+        - dev
 timeout: 60
 notification: {}
