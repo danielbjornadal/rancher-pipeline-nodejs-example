@@ -21,6 +21,7 @@ stages:
       shellScript: |-
         echo ${CICD_GIT_TAG}
         echo ${CICD_EVENT}
+        dockerd-entrypoint.sh &
         docker image ls
 timeout: 60
 notification: {}
