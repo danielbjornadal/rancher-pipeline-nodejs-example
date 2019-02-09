@@ -11,5 +11,11 @@ stages:
   - runScriptConfig:
       image: node:11
       shellScript: npm run test
+  - runScriptConfig:
+      image: node:10
+      shellScript: npm run test
+  - runScriptConfig:
+      image: node:6
+      shellScript: npm run test
 timeout: 60
 notification: {}
