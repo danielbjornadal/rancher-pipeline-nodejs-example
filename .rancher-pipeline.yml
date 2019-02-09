@@ -6,7 +6,7 @@ stages:
       shellScript: |-
         npm install
         npm run build
-        npm run start
+        npm run start &
         npm run test
 timeout: 60
 notification: {}
