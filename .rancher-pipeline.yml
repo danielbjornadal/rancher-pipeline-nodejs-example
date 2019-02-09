@@ -27,3 +27,4 @@ stages:
       registry: index.docker.io
 timeout: 60
 notification: {}
+triggerWebhookTag: true
