@@ -7,6 +7,15 @@ stages:
         npm install
         npm run build
         npm run test
+  - runScriptConfig:
+      image: node:10
+      shellScript: |-
+        npm install
+        npm run build
+        npm run test
+  - runScriptConfig:
+      image: ubuntu:latest
+      shellScript: ls -la
 - name: Build
   steps:
   - publishImageConfig:
