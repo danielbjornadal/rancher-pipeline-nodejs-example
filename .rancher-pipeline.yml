@@ -7,13 +7,21 @@ stages:
         npm install
         npm run build
         npm run test
-- name: Build and Push
+- name: Build
   steps:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: bjornadalno/${CICD_GIT_REPO_NAME}:latest
+      tag: bjornadalno/${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
       pushRemote: true
-      registry: index.docker.io
+      registry: 127.0.0.1:34725
+- name: Push
+  steps:
+  - runScriptConfig:
+      image: docker:18
+      shellScript: |-
+        echo ${CICD_GIT_TAG}
+        echo ${CICD_EVENT}
+        docker pull ${CICD_LOCAL_REGISTRY}/bjornadalno/${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
 timeout: 60
 notification: {}
