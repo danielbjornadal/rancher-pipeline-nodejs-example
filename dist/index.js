@@ -29,5 +29,5 @@ app.route('*')
     .get((req, res) => {
     res.status(404).json({ error: "API route not found" });
 });
-app.listen(80, () => console.log("Application stated on port 80"));
+module.exports = app.listen(80, () => console.log("Application stated on port 80"));
 //# sourceMappingURL=index.js.map
