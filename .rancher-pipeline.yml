@@ -1,16 +1,12 @@
 stages:
-- name: Build
-  steps:
-  - publishImageConfig:
-      dockerfilePath: ./Dockerfile
-      buildContext: .
-      tag: ${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
-      pushRemote: true
-      registry: 127.0.0.1:34725
 - name: Test
   steps:
   - runScriptConfig:
-      image: ${CICD_LOCAL_REGISTRY}/${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
-      shellScript: exit 1
+      image: node:11
+      shellScript: |-
+        npm install
+        npm run build
+        npm run start
+        npm run test
 timeout: 60
 notification: {}
