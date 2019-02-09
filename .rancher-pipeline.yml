@@ -1,40 +1,15 @@
 stages:
-- name: Test
+- name: Build Test
   steps:
   - runScriptConfig:
       image: node:11
       shellScript: |-
         npm install
         npm run build
-        npm run test
-  - runScriptConfig:
-      image: node:10
-      shellScript: |-
-        ls -la
-        npm install
-        npm run build
-        npm run test
-- name: Build
+- name: App Test
   steps:
-  - publishImageConfig:
-      dockerfilePath: ./Dockerfile
-      buildContext: .
-      tag: bjornadalno/${CICD_GIT_REPO_NAME}:latest,stable,1
-      pushRemote: true
-      registry: index.docker.io
-    when:
-      branch:
-        include:
-        - master
-  - publishImageConfig:
-      dockerfilePath: ./Dockerfile
-      buildContext: .
-      tag: bjornadalno/${CICD_GIT_REPO_NAME}:latest,dev,${CICD_GIT_BRANCH}},${CICD_GIT_BRANCH}}-${CICD_GIT_TAG},${CICD_GIT_BRANCH}}-${CICD_GIT_COMMIT},${CICD_GIT_BRANCH}}-${CICD_EXECUTION_SEQUENCE}
-      pushRemote: true
-      registry: index.docker.io
-    when:
-      branch:
-        include:
-        - dev
+  - runScriptConfig:
+      image: node:11
+      shellScript: npm run test
 timeout: 60
 notification: {}
