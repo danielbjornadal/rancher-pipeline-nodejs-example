@@ -8,7 +8,7 @@ stages:
         npm run build
         npm run test
   - runScriptConfig:
-      image: node:11
+      image: node:10
       shellScript: ls -la
 - name: Build
   steps:
