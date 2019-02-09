@@ -17,5 +17,12 @@ stages:
   - runScriptConfig:
       image: node:6
       shellScript: npm run test
+- name: Build and Push
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: bjornadalno/${CICD_GIT_REPO_NAME}:${CICD_EXECUTION_SEQUENCE}
+      registry: index.docker.io
 timeout: 60
 notification: {}
