@@ -17,7 +17,7 @@ stages:
 - name: Push
   steps:
   - runScriptConfig:
-      image: docker:18
+      image: docker:dind
       shellScript: |-
         echo ${CICD_GIT_TAG}
         echo ${CICD_EVENT}
