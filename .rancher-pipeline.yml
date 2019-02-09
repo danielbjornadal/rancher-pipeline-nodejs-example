@@ -9,7 +9,11 @@ stages:
         npm run test
   - runScriptConfig:
       image: node:10
-      shellScript: ls -la
+      shellScript: |-
+        ls -la
+        npm install
+        npm run build
+        npm run test
 - name: Build
   steps:
   - publishImageConfig:
