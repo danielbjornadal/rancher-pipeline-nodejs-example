@@ -13,7 +13,6 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: ${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
-      pushRemote: true
       registry: 127.0.0.1:34725
 - name: Push
   steps:
@@ -22,6 +21,6 @@ stages:
       shellScript: |-
         echo ${CICD_GIT_TAG}
         echo ${CICD_EVENT}
-        docker pull ${CICD_LOCAL_REGISTRY}/bjornadalno/${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
+        docker image ls
 timeout: 60
 notification: {}
