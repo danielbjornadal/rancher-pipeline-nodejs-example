@@ -10,6 +10,6 @@ stages:
   steps:
   - runScriptConfig:
       image: ${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
-      shellScript: exit 1
+      shellScript: exit 0
 timeout: 60
 notification: {}
