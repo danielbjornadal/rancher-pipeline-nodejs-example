@@ -1,0 +1,10 @@
+stages:
+- name: Build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: danielbjornadal/rancher-pipeline-nodejs-example:${CICD_GIT_COMMIT}
+      registry: index.docker.io
+timeout: 60
+notification: {}
