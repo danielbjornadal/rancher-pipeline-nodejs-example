@@ -6,7 +6,14 @@ stages:
       shellScript: |-
         npm install
         npm run build
-        npm run start &
         npm run test
+- name: Build and Push
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: bjornadalno/${CICD_GIT_REPO_NAME}:latest
+      pushRemote: true
+      registry: index.docker.io
 timeout: 60
 notification: {}
