@@ -9,7 +9,7 @@ stages:
 - name: Test
   steps:
   - runScriptConfig:
-      image: docker-registry.${CICD_PROJECT_ID}-pipeline/${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
+      image: docker-registry.p-ccxnb-pipeline/${CICD_GIT_REPO_NAME}:${CICD_GIT_COMMIT}
       shellScript: exit 1
 timeout: 60
 notification: {}
