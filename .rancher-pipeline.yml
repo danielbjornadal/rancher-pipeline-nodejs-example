@@ -6,6 +6,11 @@ stages:
       buildContext: .
       tag: bjornadalno/rancher-pipeline-nodejs-example:${CICD_GIT_COMMIT}
       registry: index.docker.io
+  - runScriptConfig:
+      image: node:11
+      shellScript: |-
+        npm install
+        npm run build
 - name: App Test
   steps:
   - runScriptConfig:
