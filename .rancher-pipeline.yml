@@ -1,10 +1,14 @@
 stages:
 - name: Build Test
   steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: bjornadalno/rancher-pipeline-nodejs-example:${CICD_GIT_COMMIT}
+      registry: index.docker.io
   - runScriptConfig:
       image: node:11
       shellScript: |-
-        echo ${CICD_GIT_TAG}
         npm install
         npm run build
 - name: App Test
