@@ -4,6 +4,7 @@ stages:
   - runScriptConfig:
       image: node:11
       shellScript: |-
+        echo ${CICD_GIT_TAG}
         npm install
         npm run build
 - name: App Test
