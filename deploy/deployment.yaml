@@ -1,10 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: helloserver-service
+  name: pipeline-service
+  namespace: pipelinetest
 spec:
   selector:
-    app: helloserver
+    app: pipelineexample
   type: NodePort
   ports:
     - protocol: TCP
@@ -14,23 +15,23 @@ spec:
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: example-helloserver
+  name: pipeline-nodejs-api-pod
   labels:
-    app: helloserver
+    app: pipelineexample
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: helloserver
+      app: pipelineexample
   template:
     metadata:
       labels:
-        app: helloserver
+        app: pipelineexample
     spec:
       imagePullSecrets:
       - name: dc-7kg8f
       containers:
-      - name: helloserver
+      - name: pipeline-nodejs-api-container
         image: ${CICD_IMAGE}:stable
         ports:
         - containerPort: 80
