@@ -6,5 +6,6 @@ COPY . .
 
 RUN npm install typescript -g
 RUN npm install
+RUN npm run build
 
 CMD npm run start
