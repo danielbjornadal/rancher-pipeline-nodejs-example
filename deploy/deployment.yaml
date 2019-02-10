@@ -31,6 +31,6 @@ spec:
       - name: dc-7kg8f
       containers:
       - name: helloserver
-        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+        image: ${CICD_IMAGE}:stable
         ports:
         - containerPort: 80
