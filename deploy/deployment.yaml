@@ -16,6 +16,7 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: pipeline-nodejs-api-pod
+  namespace: pipelinetest
   labels:
     app: pipelineexample
 spec:
